@@ -1,13 +1,28 @@
 // Mobile nav toggle
+// The mobile dropdown is built as a clone appended directly to <body> (not
+// nested inside .site-header) because Chrome treats a position:sticky
+// ancestor as the containing block for position:fixed descendants, which
+// collapsed the in-header version's height to ~0 and made it unopenable.
 const navToggle = document.getElementById('navToggle');
 const header = document.querySelector('.site-header');
+const mainNav = document.querySelector('.main-nav');
+const headerActions = document.querySelector('.header-actions');
 
-if (navToggle) {
+if (navToggle && header && mainNav && headerActions) {
+  const panel = document.createElement('div');
+  panel.className = 'mobile-menu-panel';
+
+  const navClone = mainNav.cloneNode(true);
+  navClone.removeAttribute('id');
+  panel.appendChild(navClone);
+  panel.appendChild(headerActions.cloneNode(true));
+  document.body.appendChild(panel);
+
   const setMenuOpen = (isOpen) => {
-    header.classList.toggle('nav-open', isOpen);
+    panel.classList.toggle('open', isOpen);
     navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     if (isOpen) {
-      document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+      panel.style.setProperty('--header-h', header.offsetHeight + 'px');
       document.body.classList.add('nav-locked');
     } else {
       document.body.classList.remove('nav-locked');
@@ -15,16 +30,16 @@ if (navToggle) {
   };
 
   navToggle.addEventListener('click', () => {
-    setMenuOpen(!header.classList.contains('nav-open'));
+    setMenuOpen(!panel.classList.contains('open'));
   });
 
-  document.querySelectorAll('.main-nav a, .header-actions a').forEach(link => {
-    link.addEventListener('click', () => setMenuOpen(false));
+  panel.addEventListener('click', (e) => {
+    if (e.target.closest('a')) setMenuOpen(false);
   });
 
   window.addEventListener('resize', () => {
-    if (header.classList.contains('nav-open')) {
-      document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+    if (panel.classList.contains('open')) {
+      panel.style.setProperty('--header-h', header.offsetHeight + 'px');
     }
   });
 }
