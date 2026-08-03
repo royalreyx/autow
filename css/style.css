@@ -375,17 +375,18 @@ p { margin: 0 0 14px; color: var(--muted); }
 }
 .social-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 .social-badges a {
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  color: var(--navy);
+  background: var(--red);
+  border: 2px solid transparent;
+  color: #fff;
   font-size: .82rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 8px 14px;
   border-radius: 999px;
   text-decoration: none;
-  transition: background .15s ease, border-color .15s ease;
+  box-shadow: 0 8px 20px -8px rgba(224,38,62,.6);
+  transition: background .15s ease, transform .15s ease;
 }
-.social-badges a:hover { background: #fff; border-color: var(--navy-3); }
+.social-badges a:hover { background: var(--red-dark); transform: translateY(-2px); }
 
 /* Certificate table */
 .table-wrap { overflow-x: auto; }
