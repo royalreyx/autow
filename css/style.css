@@ -203,6 +203,21 @@ p { margin: 0 0 14px; color: var(--muted); }
   position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
 }
 
+.videos { padding-top: 44px; padding-bottom: 44px; }
+
+/* Video block 2 — heading + single video, stacked */
+.videos-2 { padding: 20px 0 76px; }
+.video-block { max-width: 760px; margin: 0 auto 44px; }
+.video-block:last-child { margin-bottom: 0; }
+.video-heading {
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.video-frame-single { box-shadow: var(--shadow); }
+
 /* Badge number */
 .badge-num {
   display: inline-flex;
@@ -265,16 +280,23 @@ p { margin: 0 0 14px; color: var(--muted); }
 .note-card .highlight { color: var(--navy); font-weight: 700; }
 
 /* Training car banner */
-.training-car { position: relative; }
-.training-car img { width: 100%; height: 360px; object-fit: cover; }
-.training-car-caption {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  justify-content: center;
-  color: #fff;
-  background: linear-gradient(90deg, rgba(11,31,63,.85) 0%, rgba(11,31,63,.35) 55%, rgba(11,31,63,0) 100%);
+.training-car { background: var(--navy); padding: 44px 0 40px; }
+.training-car .container { display: flex; flex-direction: column; align-items: center; }
+.training-car img {
+  width: auto;
+  max-width: 100%;
+  max-height: 460px;
+  object-fit: contain;
+  border-radius: var(--radius);
 }
-.training-car-caption span { font-weight: 600; opacity: .9; }
+.training-car-caption {
+  display: flex; flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  margin-top: 22px;
+}
+.training-car-caption span { font-weight: 600; opacity: .8; }
 .training-car-caption strong { font-size: clamp(1.6rem, 3vw, 2.4rem); }
 
 /* Pricing */
