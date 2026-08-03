@@ -435,6 +435,7 @@ p { margin: 0 0 14px; color: var(--muted); }
 .instructor-inner ol li { margin-bottom: 6px; }
 .instructor-inner .highlight { color: var(--navy); font-weight: 700; margin-bottom: 0; }
 .message-block { max-width: 760px; margin: 44px auto 0; }
+.video-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .schedule-list { grid-template-columns: 1fr; margin-top: 30px; }
 
 /* Trust */
@@ -519,6 +520,7 @@ p { margin: 0 0 14px; color: var(--muted); }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-media { order: -1; }
   .video-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .video-row { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
   .pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
   .price-card.featured { transform: none; }
   .who-grid { grid-template-columns: 1fr 1fr; }
