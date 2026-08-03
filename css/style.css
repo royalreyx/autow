@@ -278,7 +278,7 @@ p { margin: 0 0 14px; color: var(--muted); }
   box-shadow: var(--shadow);
 }
 .note-card p:last-child { margin-bottom: 0; }
-.note-card .highlight { color: var(--navy); font-weight: 700; }
+.note-card .highlight { color: var(--red); font-weight: 700; }
 
 /* Training car banner */
 .training-car { background: var(--navy); padding: 44px 0 40px; }
@@ -374,7 +374,7 @@ p { margin: 0 0 14px; color: var(--muted); }
   box-shadow: var(--shadow);
 }
 .social-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
-.social-badges span {
+.social-badges a {
   background: var(--bg-alt);
   border: 1px solid var(--line);
   color: var(--navy);
@@ -382,7 +382,10 @@ p { margin: 0 0 14px; color: var(--muted); }
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 999px;
+  text-decoration: none;
+  transition: background .15s ease, border-color .15s ease;
 }
+.social-badges a:hover { background: #fff; border-color: var(--navy-3); }
 
 /* Certificate table */
 .table-wrap { overflow-x: auto; }
