@@ -1,0 +1,30 @@
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php54” package as the default “PHP” programming language.
+<IfModule mime_module>
+
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+ErrorDocument 404 /404.html
+
+# Sayğacın məlumat faylı çöldən oxunmasın (counter.php istifadə edir)
+<Files "counter.dat">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</Files>
+
+RewriteEngine On
+
+# Old timestamped autosave copies (az_260413152633.html etc.) -> homepage
+RewriteRule ^az_[0-9]+\.html$ / [R=301,L]
+
+# Old standalone pages -> new homepage
+RewriteRule ^(az|azonlayn|onlayn|onlayn2|onlayn3|onlayn6|onlaynvideo|ruonlayn|rus|sister|vv|o|index1|indexs)\.html$ / [R=301,L]
+
+# Old contract pages -> new contract page
+RewriteRule ^(m|kontrakt)\.html$ /muqavile.html [R=301,L]

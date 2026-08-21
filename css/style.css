@@ -204,7 +204,7 @@ p { margin: 0 0 14px; color: var(--muted); }
   position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
 }
 
-.videos { padding-top: 8px; padding-bottom: 44px; }
+.videos { padding-bottom: 44px; }
 
 /* Video block 2 — heading + single video, stacked */
 .videos-2 { padding: 20px 0 76px; }
@@ -271,7 +271,8 @@ p { margin: 0 0 14px; color: var(--muted); }
 .note-card {
   margin-top: 34px;
   padding: 22px 26px;
-  background: #fff;
+  /* sits in the white #telim-plani section — tinted so the card still reads as a card */
+  background: var(--bg-alt);
   border: 1px solid var(--line);
   border-left: 4px solid var(--gold);
   border-radius: 10px;
@@ -505,6 +506,41 @@ p { margin: 0 0 14px; color: var(--muted); }
 .footer-note { max-width: 60ch; font-size: .9rem; }
 .footer-copy { font-size: .8rem; color: rgba(255,255,255,.5); margin: 0; }
 
+/* Ziyarətçi sayğacı (counter.php ilə doldurulur, JS uğursuz olsa gizli qalır) */
+.visit-counter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0 4px;
+}
+.visit-counter[hidden] { display: none; }
+.vc-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 104px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px;
+  background: rgba(255,255,255,.05);
+}
+.vc-num {
+  font-variant-numeric: tabular-nums;
+  font-family: "Courier New", ui-monospace, monospace;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--gold);
+}
+.vc-label {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,.55);
+}
+
 /* Floating WhatsApp */
 .floating-whatsapp {
   position: fixed;
@@ -522,6 +558,7 @@ p { margin: 0 0 14px; color: var(--muted); }
 
 /* Responsive */
 @media (max-width: 980px) {
+  .hero { padding-bottom: 12px; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-media { order: -1; }
   .video-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
@@ -532,6 +569,7 @@ p { margin: 0 0 14px; color: var(--muted); }
   .instructor-inner, .trust-inner { grid-template-columns: 1fr; text-align: center; }
   .instructor-inner img, .trust-inner img { margin: 0 auto; max-width: 240px; }
   .social-badges { justify-content: center; }
+  .message-section { padding-top: 8px; }
 }
 
 .mobile-menu-panel { display: none; }

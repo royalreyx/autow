@@ -64,3 +64,20 @@ if ('IntersectionObserver' in window) {
 // Footer year
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// Visitor counter — counter.php (PHP host only). If it is missing (e.g. the
+// Netlify preview, which serves static files only) the block stays hidden.
+const counterEl = document.getElementById('visitCounter');
+if (counterEl && window.fetch) {
+  fetch('counter.php', { cache: 'no-store' })
+    .then(res => (res.ok ? res.json() : Promise.reject(res.status)))
+    .then(data => {
+      if (typeof data.total !== 'number') return;
+      const fmt = n => new Intl.NumberFormat('az-AZ').format(n);
+      document.getElementById('vcTotal').textContent = fmt(data.total);
+      document.getElementById('vcToday').textContent = fmt(data.today);
+      document.getElementById('vcOnline').textContent = fmt(data.online);
+      counterEl.hidden = false;
+    })
+    .catch(() => {});
+}
