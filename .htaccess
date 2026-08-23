@@ -33,6 +33,16 @@ RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
 # ---------------------------------------------------------------------------
+# 1b. Domain consolidation — avtoprays.ru -> avtoprays.az
+#     Both hosts are served the same repo, so this rule has to be conditional:
+#     it fires only on the .ru host and is inert on .az. Keep it above the
+#     legacy/clean-URL blocks — the .az side re-applies those anyway, so a
+#     .ru request never needs more than one extra hop.
+# ---------------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} (^|\.)avtoprays\.ru$ [NC]
+RewriteRule ^(.*)$ https://avtoprays.az/$1 [R=301,L]
+
+# ---------------------------------------------------------------------------
 # 2. Legacy pages from the old site -> current URLs (extensionless targets)
 #    These must stay ABOVE the clean-URL block: az.html, m.html, rus.html etc.
 #    still physically exist in the docroot and must never be served again.

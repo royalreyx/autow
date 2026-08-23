@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://avtoprays.ru/sitemap.xml
+Sitemap: https://avtoprays.az/sitemap.xml
