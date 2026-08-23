@@ -29,7 +29,7 @@ body {
 }
 body.nav-locked { overflow: hidden; height: 100%; }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 
 .container {
   width: 100%;
