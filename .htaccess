@@ -27,13 +27,7 @@ RewriteEngine On
 # repeated here (that would risk a redirect loop).
 
 # ---------------------------------------------------------------------------
-# 1. Hostname normalisation — www.* -> bare domain (works for both .ru and .az)
-# ---------------------------------------------------------------------------
-RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
-
-# ---------------------------------------------------------------------------
-# 1b. Domain consolidation — avtoprays.ru -> avtoprays.az
+# 1. Domain consolidation — avtoprays.ru -> avtoprays.az
 #     Both hosts are served the same repo, so this rule has to be conditional:
 #     it fires only on the .ru host and is inert on .az. Keep it above the
 #     legacy/clean-URL blocks — the .az side re-applies those anyway, so a
@@ -43,7 +37,13 @@ RewriteCond %{HTTP_HOST} (^|\.)avtoprays\.ru$ [NC]
 RewriteRule ^(.*)$ https://avtoprays.az/$1 [R=301,L]
 
 # ---------------------------------------------------------------------------
-# 2. Legacy pages from the old site -> current URLs (extensionless targets)
+# 2. Hostname normalisation — www.* -> bare domain (works for both .ru and .az)
+# ---------------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# ---------------------------------------------------------------------------
+# 3. Legacy pages from the old site -> current URLs (extensionless targets)
 #    These must stay ABOVE the clean-URL block: az.html, m.html, rus.html etc.
 #    still physically exist in the docroot and must never be served again.
 # ---------------------------------------------------------------------------
@@ -63,7 +63,7 @@ RewriteRule ^(az|azonlayn|onlayn|onlayn2|onlayn3|onlayn6|onlaynvideo|ruonlayn|ru
 RewriteRule ^(m|kontrakt)/?$ https://%{HTTP_HOST}/muqavile [R=301,L]
 
 # ---------------------------------------------------------------------------
-# 3. Clean URLs — /korporativ instead of /korporativ.html
+# 4. Clean URLs — /korporativ instead of /korporativ.html
 #    a) 301 the old .html address to the clean one (one hop, no loop: the
 #       condition looks at the literal request line, not the rewritten path)
 #    b) serve the real .html file for the clean address, internally
@@ -86,7 +86,7 @@ RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile
 RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile)$ $1.html [L]
 
 # ---------------------------------------------------------------------------
-# 4. Compression (the CDN already gzips, this covers direct origin hits)
+# 5. Compression (the CDN already gzips, this covers direct origin hits)
 # ---------------------------------------------------------------------------
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
@@ -96,7 +96,7 @@ RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile
 </IfModule>
 
 # ---------------------------------------------------------------------------
-# 5. Browser caching. HTML stays uncached so content edits appear immediately;
+# 6. Browser caching. HTML stays uncached so content edits appear immediately;
 #    css/js are versioned with ?v=… in the markup, so they can cache hard.
 # ---------------------------------------------------------------------------
 <IfModule mod_expires.c>
@@ -126,6 +126,6 @@ RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile
 </IfModule>
 
 # ---------------------------------------------------------------------------
-# 6. Correct charset for the Azerbaijani text
+# 7. Correct charset for the Azerbaijani text
 # ---------------------------------------------------------------------------
 AddDefaultCharset UTF-8
