@@ -69,7 +69,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 // Netlify preview, which serves static files only) the block stays hidden.
 const counterEl = document.getElementById('visitCounter');
 if (counterEl && window.fetch) {
-  fetch('counter.php', { cache: 'no-store' })
+  fetch('/counter.php', { cache: 'no-store' })
     .then(res => (res.ok ? res.json() : Promise.reject(res.status)))
     .then(data => {
       if (typeof data.total !== 'number') return;
