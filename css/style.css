@@ -184,6 +184,9 @@ p { margin: 0 0 14px; color: var(--muted); }
 .hero-trust li { font-size: .85rem; color: var(--muted); }
 .hero-trust strong { display: block; color: var(--navy); font-size: 1.05rem; }
 .hero-media img {
+  width: 100%;
+  height: auto;
+  /* full photo must stay uncropped -- no object-fit here */
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
