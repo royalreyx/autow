@@ -130,9 +130,9 @@ p { margin: 0 0 14px; color: var(--muted); }
 /* The mobile clone has room to breathe — restore the roomier type there. */
 .mobile-menu-panel .main-nav a { font-size: 1rem; }
 
-/* Eleven nav links plus the phone button no longer fit under ~1430px; the
+/* Ten nav links plus the phone button no longer fit under ~1330px; the
    WhatsApp button stays because it is the primary conversion. */
-@media (max-width: 1430px) {
+@media (max-width: 1330px) {
   .site-header .header-phone { display: none; }
 }
 
@@ -604,10 +604,10 @@ p { margin: 0 0 14px; color: var(--muted); }
 
 .mobile-menu-panel { display: none; }
 
-/* The desktop nav carries 11 links, so the hamburger takes over much earlier
-   than the old 760px breakpoint — below 1300px the row no longer fits next to
+/* The desktop nav carries 10 links, so the hamburger takes over much earlier
+   than the old 760px breakpoint — below 1200px the row no longer fits next to
    the brand and the header buttons. */
-@media (max-width: 1300px) {
+@media (max-width: 1200px) {
   .main-nav, .header-actions { display: none; }
   .nav-toggle { display: flex; }
 

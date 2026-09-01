@@ -71,19 +71,25 @@ RewriteRule ^(m|kontrakt)/?$ https://%{HTTP_HOST}/muqavile [R=301,L]
 #    never expose one of the leftover legacy .html files in the docroot.
 # ---------------------------------------------------------------------------
 
+# Yol nişanları testi müvəqqəti bağlıdır (müştərinin qərarı, 2026-09-01):
+# səhifə, bazası (js/nisanlar-data.js) və şəkilləri (assets/nisanlar/) repoda
+# saxlanılır, amma saytda açılmır. Açmaq üçün: aşağıdakı qaydanı silin və
+# "nisan-testi" adını aşağıdakı üç whitelist qaydasına geri əlavə edin.
+RewriteRule ^nisan-testi(\.html)?/?$ - [R=404,L]
+
 # /index.html and /index -> /
 RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
 RewriteRule ^ https://%{HTTP_HOST}/ [R=301,L]
 
 # /<page>.html -> /<page>
-RewriteCond %{THE_REQUEST} \s/+(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|nisan-testi|muqavile)\.html[\s?] [NC]
+RewriteCond %{THE_REQUEST} \s/+(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile)\.html[\s?] [NC]
 RewriteRule ^ https://%{HTTP_HOST}/%1 [R=301,L]
 
 # /<page>/ -> /<page>  (no trailing slash on page URLs)
-RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|nisan-testi|muqavile)/$ https://%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile)/$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # /<page> -> <page>.html  (internal, address bar keeps the clean URL)
-RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|nisan-testi|muqavile)$ $1.html [L]
+RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile)$ $1.html [L]
 
 # ---------------------------------------------------------------------------
 # 5. Compression (the CDN already gzips, this covers direct origin hits)
