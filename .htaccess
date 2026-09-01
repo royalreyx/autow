@@ -76,14 +76,14 @@ RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
 RewriteRule ^ https://%{HTTP_HOST}/ [R=301,L]
 
 # /<page>.html -> /<page>
-RewriteCond %{THE_REQUEST} \s/+(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile)\.html[\s?] [NC]
+RewriteCond %{THE_REQUEST} \s/+(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|nisan-testi|muqavile)\.html[\s?] [NC]
 RewriteRule ^ https://%{HTTP_HOST}/%1 [R=301,L]
 
 # /<page>/ -> /<page>  (no trailing slash on page URLs)
-RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile)/$ https://%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|nisan-testi|muqavile)/$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # /<page> -> <page>.html  (internal, address bar keeps the clean URL)
-RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|muqavile)$ $1.html [L]
+RewriteRule ^(korporativ|qadin-suruculer|valideynler-ucun|vip-suruculer|nisan-testi|muqavile)$ $1.html [L]
 
 # ---------------------------------------------------------------------------
 # 5. Compression (the CDN already gzips, this covers direct origin hits)

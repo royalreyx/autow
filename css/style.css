@@ -10,6 +10,10 @@
   --bg: #ffffff;
   --bg-alt: #f4f7fb;
   --line: #e6eaf1;
+  --green: #1f9d55;
+  --green-dark: #14663a;
+  --green-soft: #eaf7f0;
+  --red-soft: #fdeef0;
   --radius: 14px;
   --shadow: 0 10px 30px -12px rgba(11, 31, 63, 0.18);
   --container: 1160px;
@@ -126,9 +130,9 @@ p { margin: 0 0 14px; color: var(--muted); }
 /* The mobile clone has room to breathe — restore the roomier type there. */
 .mobile-menu-panel .main-nav a { font-size: 1rem; }
 
-/* Ten nav links plus the phone button no longer fit under ~1330px; the
+/* Eleven nav links plus the phone button no longer fit under ~1430px; the
    WhatsApp button stays because it is the primary conversion. */
-@media (max-width: 1330px) {
+@media (max-width: 1430px) {
   .site-header .header-phone { display: none; }
 }
 
@@ -600,10 +604,10 @@ p { margin: 0 0 14px; color: var(--muted); }
 
 .mobile-menu-panel { display: none; }
 
-/* The desktop nav carries 10 links, so the hamburger takes over much earlier
-   than the old 760px breakpoint — below 1200px the row no longer fits next to
+/* The desktop nav carries 11 links, so the hamburger takes over much earlier
+   than the old 760px breakpoint — below 1300px the row no longer fits next to
    the brand and the header buttons. */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .main-nav, .header-actions { display: none; }
   .nav-toggle { display: flex; }
 
@@ -992,4 +996,122 @@ p { margin: 0 0 14px; color: var(--muted); }
   .panel { padding: 26px 22px; }
   .page-hero { padding: 36px 0 42px; }
   .hero-photo { padding: 6px; }
+}
+
+/* ---------------------------------------------------------------------------
+   Yol nişanları testi (nisan-testi.html)
+   Nişan şəkilləri mənbədə cəmi 50px enindədir, ona görə şəkil sabit ölçülü
+   qutuda `object-fit: contain` ilə böyüdülür — belədə həm dar lövhəciklər,
+   həm də hündür nişanlar eyni çərçivədə deformasiyasız görünür.
+--------------------------------------------------------------------------- */
+.quiz-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+.quiz-filters button {
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.quiz-filters button:hover { border-color: var(--navy-3); }
+.quiz-filters button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.quiz-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px;
+}
+.quiz-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: .85rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+.quiz-top b { color: var(--navy); }
+.quiz-ask { text-align: center; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+
+.quiz-sign {
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.quiz-sign img {
+  width: 100%;
+  max-width: 165px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.quiz-option:hover:not(:disabled) { border-color: var(--navy-3); background: var(--bg-alt); }
+.quiz-option:disabled { cursor: default; }
+.qo-key {
+  flex: 0 0 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--bg-alt);
+  color: var(--muted);
+  font-size: .8rem;
+}
+.quiz-option.is-correct { border-color: var(--green); background: var(--green-soft); color: var(--green-dark); }
+.quiz-option.is-correct .qo-key { background: var(--green); color: #fff; }
+.quiz-option.is-wrong { border-color: var(--red); background: var(--red-soft); color: var(--red-dark); }
+.quiz-option.is-wrong .qo-key { background: var(--red); color: #fff; }
+
+.quiz-feedback { margin: 16px 0 0; padding: 12px 14px; border-radius: 12px; font-weight: 600; }
+.quiz-feedback.is-ok { background: var(--green-soft); color: var(--green-dark); }
+.quiz-feedback.is-no { background: var(--red-soft); color: var(--red-dark); }
+.quiz-feedback .qf-kat { display: block; font-weight: 500; font-size: .85rem; opacity: .85; margin-top: 2px; }
+
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 18px; }
+.quiz-hint { font-size: .8rem; color: var(--muted); margin: 14px 0 0; }
+.quiz-hint b { color: var(--navy); }
+
+@media (max-width: 640px) {
+  .quiz-card { padding: 18px; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-sign img { height: 170px; max-width: 140px; }
+  .quiz-hint { display: none; }
+  .quiz-actions .btn { flex: 1 1 auto; justify-content: center; }
 }
